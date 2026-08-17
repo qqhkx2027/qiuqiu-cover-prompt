@@ -1,6 +1,6 @@
 # qiuqiu-cover-prompt
 
-秋秋封面提示词技能：从文章、Markdown 和参考图片生成可直接用于即梦、Seedream、Nano Banana 或 GPT Image 的中文封面提示词。
+秋秋封面提示词技能：从文章、Markdown 和参考图片生成秋秋同款星露谷像素风、可直接用于即梦、Seedream、Nano Banana 或 GPT Image 的中文封面提示词。
 
 这是一个通用的 `SKILL.md + references/` 技能包，不绑定某一个智能体。只要你的智能体支持加载技能文件、项目指令或自定义 system prompt，就可以安装使用。
 
@@ -30,9 +30,13 @@ https://github.com/qqhkx2027/qiuqiu-cover-prompt
 
 如果智能体不支持自动从 GitHub 安装，再手动下载仓库，将 `SKILL.md` 和 `references/` 放进它的技能或项目指令目录即可。
 
+## 当前主题
+
+当前版本只做一种风格：**秋秋同款星露谷像素风**。暂不提供多风格选择，先把这一套风格打磨稳定。
+
 ## 主要能力
 
-- 10 种封面构图风格
+- 秋秋同款星露谷像素风
 - 真人脸、旧封面、产品/UI 截图的参考图角色分配
 - 长中文标题分行、安全区和错字检查
 - 小红书与微信公众号尺寸预设
