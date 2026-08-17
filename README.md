@@ -13,10 +13,12 @@
 
 ## 安装
 
-将仓库内容复制到 Codex skills 目录：
+只将技能文件复制到 Codex skills 目录（仓库 README 不必复制）：
 
 ```bash
-cp -R . ~/.codex/skills/qiuqiu-cover-prompt
+mkdir -p ~/.codex/skills/qiuqiu-cover-prompt
+cp SKILL.md ~/.codex/skills/qiuqiu-cover-prompt/
+cp -R agents references ~/.codex/skills/qiuqiu-cover-prompt/
 ```
 
 然后在 Codex 中调用：
