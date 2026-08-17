@@ -1,4 +1,4 @@
 interface:
   display_name: "秋秋封面提示词"
   short_description: "从文章生成可直接用于图片模型的公众号封面提示词与构图方案"
-  default_prompt: "Use $qiuqiu-cover-prompt to turn this article and any attached reference images into a Chinese 3:4 cover prompt; preserve the confirmed title exactly and run the image if I ask for a finished cover."
+  default_prompt: "Use $qiuqiu-cover-prompt to turn this article and any attached reference images into either a Xiaohongshu 3:4 1080×1440px cover or a WeChat Official Account 2.35:1 900×383px header; preserve the confirmed title exactly and run the image if I ask for a finished cover."
