@@ -1,4 +1,4 @@
 interface:
   display_name: "秋秋封面提示词"
-  short_description: "从文章生成秋秋同款星露谷像素风封面提示词"
-  default_prompt: "Use $qiuqiu-cover-prompt to turn this article and any attached reference images into an autumnal Stardew-like pixel cover, using either Xiaohongshu 3:4 1080×1440px or WeChat Official Account 2.35:1 900×383px; preserve the confirmed title exactly and run the image if I ask for a finished cover."
+  short_description: "逐步选择构图并生成秋秋同款平台封面提示词"
+  default_prompt: "Use $qiuqiu-cover-prompt to turn this article and attached images into a platform-specific Qiuqiu cover. First confirm the platform canvas, then ask one question at a time to choose one of 10 composition modes (including product-main and partial-appearance). Use Stardew-like pixel visuals for WeChat Official Account horizontal covers and cutout visuals for WeChat Channels/Bilibili horizontal plus Douyin/Kuaishou/Xiaohongshu vertical covers. Preserve the confirmed title exactly and run image generation only when requested."
