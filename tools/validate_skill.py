@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 
@@ -19,6 +20,7 @@ def main() -> int:
         "references/prompt-checklist.md",
         "references/assets/qiuqiu-face-reference.jpg",
         "references/assets/qiuqiu-style-reference.png",
+        "tools/resolve_assets.py",
     )
     for relative in required_files:
         if not (root / relative).is_file():
@@ -58,10 +60,44 @@ def main() -> int:
         if "$qiuqiu-wechat-cover" not in agent_text:
             errors.append("agents/openai.yaml default_prompt must mention $qiuqiu-wechat-cover")
 
+    # Validate bundled image assets really resolve.
+    identity = root / "references/assets/qiuqiu-face-reference.jpg"
+    style = root / "references/assets/qiuqiu-style-reference.png"
+
+    def check_image(path: Path, label: str, magic: bytes, min_size: int) -> None:
+        if not path.is_file():
+            return  # already reported above
+        data = path.read_bytes()
+        if len(data) < min_size:
+            errors.append(f"{label} looks unexpectedly small ({len(data)} bytes)")
+        if not data.startswith(magic):
+            errors.append(f"{label} is not a valid image (bad file signature)")
+
+    check_image(identity, "identity reference", b"\xff\xd8\xff", 10_000)
+    check_image(style, "style reference", b"\x89PNG\r\n\x1a\n", 10_000)
+
+    # Run the resolver to confirm it actually finds and reads the assets.
+    resolver = root / "tools" / "resolve_assets.py"
+    if resolver.is_file():
+        try:
+            result = subprocess.run(
+                [sys.executable, str(resolver)],
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+            if result.returncode != 0:
+                errors.append("tools/resolve_assets.py failed to resolve bundled assets")
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"tools/resolve_assets.py could not run: {exc}")
+
     required_phrases = (
         "2.35:1",
         "references/workflow.md",
         "references/prompt-template.md",
+        "tools/resolve_assets.py",
+        "qiuqiu-face-reference.jpg",
+        "qiuqiu-style-reference.png",
         "待确认",
     )
     for phrase in required_phrases:
@@ -79,3 +115,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

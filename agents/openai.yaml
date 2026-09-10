@@ -1,4 +1,18 @@
 interface:
   display_name: "秋秋公众号封面"
-  short_description: "从文章生成统一的 2.35:1 秋秋公众号封面"
-  default_prompt: "Use $qiuqiu-wechat-cover to create a QIUQIU WeChat article cover. First read the full article or Markdown path, then classify image 1 as identity, image 2 as style, and image 3+ as real supplied subjects. Ask only for necessary missing assets, propose three concise hooks and one layout, and wait for copy confirmation before generating. Keep 2.35:1, bright warm wood pixel style, realistic QIUQIU, exact Chinese text, and no invented logos or products."
+  short_description: "用内置秋秋真人与品牌风格生成统一公众号封面"
+  default_prompt: >-
+    Use $qiuqiu-wechat-cover to create a QIUQIU WeChat article cover.
+    First read the full article or Markdown path.
+    Before image generation, resolve and validate the bundled assets using
+    tools/resolve_assets.py. The Skill's bundled
+    references/assets/qiuqiu-face-reference.jpg is Image 1 (identity source) and
+    references/assets/qiuqiu-style-reference.png is Image 2 (brand style source).
+    These assets must be passed to the image tool as real image inputs, not merely
+    mentioned by filename or path. Never search the web, conversation history, or
+    private libraries for replacement QIUQIU identity or style images.
+    Current-task product/logo/screenshot/travel images start at Image 3.
+    If the runtime cannot actually provide Image 1 or Image 2 to the image tool,
+    stop instead of inventing a replacement person. Keep 2.35:1, exact Chinese
+    copy, real supplied subjects, and the bundled QIUQIU identity.
+
