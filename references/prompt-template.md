@@ -1,38 +1,35 @@
-# 秋秋公众号封面跑图 Prompt 模板
+# 秋秋微信公众号封面提示词模板
 
-生成封面时按下面结构填充，替换方括号内容；保持比例与品牌风格不变。
+复制后替换方括号内容。生成前先确认文章、文案和每张参考图的角色。
 
----
+```text
+Create a 2.35:1 horizontal WeChat Official Account article cover for creator QIUQIU, recommended canvas 1880x800.
 
-2.35:1 横版公众号封面（推荐 1880x800 画布）。
+ARTICLE: [用一句话说明正文主题和点击理由]
+COPY (Chinese, reproduce character by character, no extra text):
+- Hook: “[小钩子]”
+- Main title: “[主标题]”
+- Optional subtitle: “[补充说明；没有就删除这一行]”
 
-参考图角色：图 1 只用于秋秋真人身份；图 2 只用于整体风格。图 1 不照搬背景、姿势或原图文字；图 2 不复制标题、人物、Logo 或具体产品。新增产品、Logo、截图和旅行照从图 3 开始编号，并在提示词中写明用途。
+REFERENCE ROLES:
+- Image 1: QIUQIU identity only. Keep realistic black hair, facial proportions, eyes, mask, skin tone and age impression. Do not copy its background, pose or text.
+- Image 2: overall style only. Use its warm wood pixel-game workspace, palette, lighting, title hierarchy and desk relationship. Do not copy its text, person, logo or specific product.
+- Image 3+: real supplied product/logo/screenshot/travel photos. Use each as-is for [用途]; do not redraw, recolor, replace brand or invent objects.
 
-风格：暖木色复古像素游戏工作台。木质书架、木桌、明亮窗户、紫色台灯、小植物、可爱玩偶、像素 UI 标签、爱心星星装饰。画面明亮温暖，不要暗色科技感。
+STYLE: warm wooden study/workspace, retro pixel-game UI, bright cream window light, purple/pink/cream-yellow accents, cozy and lively, realistic person and real objects integrated with pixel atmosphere.
+LAYOUT: headline on the left 55-65%; QIUQIU or clean space on the right 30-40%; real subject/product/route along the bottom. Keep headline, key number, person and product unobstructed.
+TYPOGRAPHY: bold square pixel display type, main title largest, clear outline/shadow, Chinese characters exact.
+NEGATIVE: no unauthorized words, no invented logos/products, no cartoon or doll-like face, no full pixel person, no dark cyber-tech mood, no unrelated decorations, no aspect-ratio change.
+```
 
-人物：图 1 作为秋秋面部与身份依据，80% 真人感 + 20% 像素融合，保持黑发、五官比例、口罩与整体气质；不要把人物画成卡通或二次元。（若未提供图 1，删除人物句，右侧预留干净背景。）
+## 多产品
 
-整体风格：以图 2 为暖木像素、光线、配色和构图参考，不照搬图 2 的 MacBook Neo 文案或产品。真实素材（如提供）：图 3 起按原样放置，不重绘、不换色、不替换品牌，Logo 严格对应。未提供时用文字名或留空。
+把真实 Logo 或文字名牌放在标题下方横排；每个产品最多一句短标签。空间不足时先删标签，再删补充说明，不缩小主标题。
 
-标题（最多 3 组，整页 20~35 汉字）：
+## 旅行
 
-小钩子：「XXXX」
-主标题：「XXXX」（大字，视觉焦点）
-补充说明：「XXXX」（一句，可选）
+把真实旅行照作为路线节点或 Polaroid 组图；地点、年份和路线只能使用文章或图片已确认的信息。
 
-布局：左侧 55-65% 为标题区，右侧 30-40% 为人物或干净空间，底部放真实产品/路线。
+## 生成后
 
-要求：中文标题逐字正确；不添加未授权文字；画面整体明亮；比例严格 2.35:1。
-
----
-
-## 示例（AI 智能体横评）
-
-小钩子：「501 篇文章」
-主标题：「谁赢了？」
-补充说明：「3 个办公 AI 真实测评」
-底部：三个真实 Logo 横排（仅当提供）或文字名牌「豆包工作 / 千问办公 / WorkBuddy」。
-
-## 附：多产品对比写法
-
-上方主标题，中间真实 Logo / 名牌横排，每产品最多一句短标签；封面满时标签全删。
+逐字检查中文。若比例、文字或真实素材不符合要求，保留文案和参考图角色，只针对失败项重跑。

@@ -1,4 +1,4 @@
 interface:
   display_name: "秋秋公众号封面"
-  short_description: "按品牌视觉生成微信公众号 2.35:1 文章封面"
-  default_prompt: "Use $qiuqiu-wechat-cover to create a WeChat Official Account article cover for QIUQIU. If the article is missing, ask for the full article or Markdown path first. Treat attached image 1 as QIUQIU's identity reference and image 2 as the overall style reference; image 1 is for face/identity only and image 2 is for warm wood pixel style only. Then ask only for necessary product, logo, screenshot, or travel references, summarize the article, propose three short hooks, and wait for copy confirmation. Keep the 2.35:1 ratio and 20-35 Chinese characters. Generate the image only after the user explicitly asks to generate/run it."
+  short_description: "从文章生成统一的 2.35:1 秋秋公众号封面"
+  default_prompt: "Use $qiuqiu-wechat-cover to create a QIUQIU WeChat article cover. First read the full article or Markdown path, then classify image 1 as identity, image 2 as style, and image 3+ as real supplied subjects. Ask only for necessary missing assets, propose three concise hooks and one layout, and wait for copy confirmation before generating. Keep 2.35:1, bright warm wood pixel style, realistic QIUQIU, exact Chinese text, and no invented logos or products."

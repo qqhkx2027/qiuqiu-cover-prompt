@@ -1,54 +1,62 @@
 # qiuqiu-cover-prompt
 
-为公众号「秋秋」生成统一品牌风格的 2.35:1 文章封面。
-在固定的「暖木色复古像素游戏工作台 + 真人秋秋 + 真实主体素材」视觉体系中，按每篇文章真实主题替换标题与素材，不再每次重新发明封面。
+「秋秋」微信公众号封面 Skill。它把一篇真实文章转换成统一的 2.35:1 横版封面：先读正文、提炼钩子、确认素材和文案，再生成或编辑图片。
 
-## 定位
+Skill 的规范名称是 `$qiuqiu-wechat-cover`；`qiuqiu-cover-prompt` 是仓库名称。
 
-- 固定比例：2.35:1（公众号头条封面）
-- 固定风格：暖木像素工作台、紫 / 粉 / 奶油黄强调、像素 UI
-- 先读文章 -> 提炼钩子 -> 控制文字 20~35 字 -> 再生成
-- 真实优先：有真人照就用真人；有产品 / Logo / 旅行照就原位使用，不重绘
-- 不虚构：无参考时不生成替身人物，不编造 Logo
+## 能做什么
 
-## 调用时会发生什么
+- 好物分享、AI 工具测评、旅行、学习效率、数码体验和桌面改造封面
+- 固定暖木色复古像素工作台风格，保留真人秋秋和真实产品的辨识度
+- 新封面与已有封面局部编辑
+- 生成前提炼 3 个钩子，生成后检查比例、文字和素材一致性
 
-调用技能后，它会按顺序处理：
+它不替代正文策划，也不会在缺少文章、真人照、产品图或 Logo 时自行编造事实。
 
-1. 没有文章时，先请你粘贴公众号正文或提供 Markdown 路径。
-2. 当前对话的图 1 作为秋秋真人参考，图 2 作为整体风格参考。
-3. 根据文章主题，只询问必要的产品图、Logo、截图或旅行照；新增素材从图 3 开始编号。
-4. 文章和素材齐备后，先给出主题判断、3 个封面钩子和推荐构图。
-5. 你确认文案并明确说“生成/跑图”后，才生成 2.35:1 封面。
+## 使用方式
 
-图 1 只负责人物身份，图 2 只负责风格；两张图都不会被原样复制。
+把本仓库交给支持加载 Skill 的智能体，然后这样调用：
+
+> 使用 `$qiuqiu-wechat-cover`，为这篇公众号文章生成封面：`/path/to/article.md`
+
+调用时：
+
+1. 提供完整正文、Markdown 内容或可读取的本地路径。
+2. 默认图 1 是真人身份参考，默认图 2 是整体风格参考；对话中附带的新图优先。
+3. 按文章需要补充产品、Logo、截图、旅行照或旧封面，不需要的素材不用提供。
+4. 先查看主题判断、3 个钩子和构图建议，确认文案后再明确说“生成/跑图”。
+
+详细输入、阶段输出和失败处理见 [references/workflow.md](references/workflow.md)。
 
 ## 目录
 
-    SKILL.md                         # 主流程与规则
-    agents/openai.yaml              # 智能体展示信息
-    references/style-guide.md       # 公众号 2.35:1 风格指南
-    references/prompt-template.md   # 标准跑图 Prompt 模板
-    references/assets/qiuqiu-face-reference.jpg  # 默认图 1：真人身份
-    references/assets/qiuqiu-style-reference.png # 默认图 2：整体风格
-    tools/validate_skill.py         # 本地校验
-    examples/                       # 封面示例（按需添加）
-
-## 安装
-
-把下面这行和仓库地址发给支持加载 Skill 的智能体：
-
-请安装这个技能仓库，并读取其中的 SKILL.md 与 references/：
-https://github.com/qqhkx2027/qiuqiu-cover-prompt
-
-安装后可说：调用 qiuqiu-wechat-cover，为这篇文章生成公众号封面。
-
-项目已内置图 1 和图 2。调用时如果附带新图，新图优先；新增产品、Logo、截图或旅行照从图 3 开始编号。
+```text
+SKILL.md                         入口规则与硬约束
+agents/openai.yaml              UI 展示和默认调用提示
+references/workflow.md          输入角色、阶段协议、编辑边界
+references/style-guide.md       2.35:1 视觉系统
+references/prompt-template.md   可复制的生成提示词结构
+references/prompt-checklist.md  生成前后验收清单
+references/assets/              默认图 1、图 2
+examples/                       已完成的示例
+tools/validate_skill.py         本地和 CI 校验
+outputs/                        已生成的封面样例
+```
 
 ## 本地校验
 
+```bash
 python3 tools/validate_skill.py .
+```
+
+GitHub Actions 会在提交时运行同一校验。校验只检查结构、链接和必需资产，不替代生成后的视觉验收。
+
+## 安装
+
+仓库地址：<https://github.com/qqhkx2027/qiuqiu-cover-prompt>
+
+安装后请读取 `SKILL.md`，按需读取 `references/`；项目已内置默认图 1 和图 2。
 
 ## 许可
 
-MIT License。
+MIT License
