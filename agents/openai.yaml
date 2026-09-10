@@ -1,4 +1,4 @@
 interface:
-  display_name: "秋秋封面提示词"
-  short_description: "逐步选择构图并生成秋秋同款平台封面提示词"
-  default_prompt: "Use $qiuqiu-cover-prompt to turn this article and attached images into a platform-specific Qiuqiu cover. First confirm the platform canvas, then ask one question at a time to choose one of 10 composition modes (including product-main and partial-appearance). Use Stardew-like pixel visuals for WeChat Official Account horizontal covers and cutout visuals for WeChat Channels/Bilibili horizontal plus Douyin/Kuaishou/Xiaohongshu vertical covers. Preserve the confirmed title exactly and run image generation only when requested."
+  display_name: "秋秋公众号封面"
+  short_description: "按品牌视觉生成微信公众号 2.35:1 文章封面"
+  default_prompt: "Use $qiuqiu-wechat-cover to create a WeChat Official Account article cover for QIUQIU. First read the full article, extract the theme and one strong hook, then keep the 2.35:1 ratio, warm wood retro pixel-game workspace style, realistic QIUQIU (when a reference photo is provided) and real product/logo photos (when supplied). Keep copy within 20-35 Chinese characters. Run image generation only when the user asks."
