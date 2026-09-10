@@ -18,6 +18,8 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 TARGET_SIZE = (1880, 800)
 FONT_CANDIDATES = (
+    "/System/Library/Fonts/STHeiti Medium.ttc",
+    "/System/Library/Fonts/ヒラギノ角ゴシック W7.ttc",
     "/System/Library/Fonts/PingFang.ttc",
     "/System/Library/Fonts/Hiragino Sans GB.ttc",
     "/System/Library/Fonts/STHeiti Light.ttc",
@@ -33,7 +35,7 @@ def font_path(explicit: str | None) -> Path:
     raise SystemExit("找不到中文字体，请用 --font 指定本机字体文件。")
 
 
-def load_copy(args: argparse.Namespace) -> dict[str, str]:
+def load_copy(args: argparse.Namespace) -> dict[str, object]:
     values = {"hook": args.hook or "", "title": args.title or "", "subtitle": args.subtitle or ""}
     if args.copy_json:
         values.update(json.loads(Path(args.copy_json).read_text(encoding="utf-8")))
@@ -51,7 +53,7 @@ def main() -> int:
     parser.add_argument("--title")
     parser.add_argument("--subtitle")
     parser.add_argument("--font", help="本机中文字体路径")
-    parser.add_argument("--font-size", type=int, default=92)
+    parser.add_argument("--font-size", type=int, default=124, help="主标题字号")
     args = parser.parse_args()
 
     source = args.input.resolve()
@@ -87,29 +89,35 @@ def main() -> int:
     font = font_path(args.font)
     draw = ImageDraw.Draw(image)
     title_font = ImageFont.truetype(str(font), args.font_size)
-    hook_font = ImageFont.truetype(str(font), max(28, args.font_size // 2))
-    subtitle_font = ImageFont.truetype(str(font), max(24, args.font_size // 3))
+    hook_font = ImageFont.truetype(str(font), max(32, args.font_size // 2))
+    subtitle_font = ImageFont.truetype(str(font), max(28, args.font_size // 3))
 
     left = int(width * 0.06)
+    hook_left = int(width * 0.15)
+    subtitle_left = int(width * 0.16)
     max_text_width = int(width * 0.48)
-    y = int(height * 0.17)
+    y = int(height * 0.12)
     shadow = (49, 22, 58, 230)
     cream = (255, 235, 166, 255)
     pink = (255, 153, 194, 255)
 
-    def draw_line(text: str, used_font: ImageFont.FreeTypeFont, fill: tuple[int, ...], y_pos: int) -> int:
+    def draw_line(text: str, used_font: ImageFont.FreeTypeFont, fill: tuple[int, ...], y_pos: int, x_pos: int = left) -> int:
         if not text:
             return y_pos
         box = draw.textbbox((0, 0), text, font=used_font, stroke_width=3)
         if box[2] - box[0] > max_text_width:
             raise SystemExit(f"文字超出左侧安全区，请缩短：{text}")
-        draw.text((left + 5, y_pos + 6), text, font=used_font, fill=shadow, stroke_width=6, stroke_fill=shadow)
-        draw.text((left, y_pos), text, font=used_font, fill=fill, stroke_width=3, stroke_fill=shadow)
+        draw.text((x_pos + 7, y_pos + 8), text, font=used_font, fill=shadow, stroke_width=8, stroke_fill=shadow)
+        draw.text((x_pos, y_pos), text, font=used_font, fill=fill, stroke_width=4, stroke_fill=shadow)
         return y_pos + box[3] - box[1] + 18
 
-    y = draw_line(copy["hook"], hook_font, pink, y)
-    y = draw_line(copy["title"], title_font, cream, y)
-    draw_line(copy["subtitle"], subtitle_font, cream, y + 4)
+    draw_line(str(copy["hook"]), hook_font, pink, y, hook_left)
+    title = copy["title"]
+    title_lines = title if isinstance(title, list) else str(title).splitlines()
+    y = int(height * 0.25)
+    for index, line in enumerate(title_lines):
+        y = draw_line(str(line), title_font, pink if index % 2 == 0 else cream, y)
+    draw_line(str(copy["subtitle"]), subtitle_font, cream, int(height * 0.56), subtitle_left)
 
     output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)

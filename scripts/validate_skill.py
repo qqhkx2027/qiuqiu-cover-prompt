@@ -15,6 +15,8 @@ def main() -> int:
         "agents/openai.yaml",
         "references/workflow.md",
         "references/style-guide.md",
+        "references/copy-guide.md",
+        "references/edit-policy.md",
         "references/prompt-template.md",
         "references/prompt-checklist.md",
         "assets/qiuqiu-face-reference.jpg",
@@ -76,6 +78,7 @@ def main() -> int:
         "COMPOSITE",
         "LOCAL_EDIT",
         "reference_manifest",
+        "项目目录之外",
         "待确认",
     )
     for phrase in required_phrases:

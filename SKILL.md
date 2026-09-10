@@ -29,7 +29,7 @@ description: >
 
 新增图片要声明 `role`（如 `current_cover`、`identity`、`style`、`product`、`logo`、`travel_photo`、`screenshot`），并说明是否 `preserve: exact`。没有真人图时不虚构秋秋；没有真实主体图时使用文字名或留白。
 
-视觉参数见 [references/style-guide.md](references/style-guide.md)，历史翻车与模式选择示例见 [examples/failure-cases.md](examples/failure-cases.md)。
+视觉参数见 [references/style-guide.md](references/style-guide.md)，文案提炼见 [references/copy-guide.md](references/copy-guide.md)，编辑边界见 [references/edit-policy.md](references/edit-policy.md)，历史翻车与模式选择示例见 [examples/failure-cases.md](examples/failure-cases.md)。
 
 ## 工作流
 
@@ -49,6 +49,7 @@ description: >
 - 视觉为 **暖木色 × 复古像素游戏 × 温馨工作台 × 真实主体**，整体明亮温暖，避免暗色科技风。
 - 默认构图为左侧 55%～65% 标题、右侧 30%～40% 人物或留白、下方真实主体；不要互相遮挡。
 - 文案最多 3 组（小钩子、主标题、可选补充），总量约 20～35 个汉字；主标题是唯一视觉焦点。
+- 场景装饰服务于正文主题；除非文章需要，不加入笔记本电脑、软件界面等抢主题的道具。
 - 有真人参考时保持偏真实的脸（约 80% 真人感 + 20% 像素融合），禁止换脸、娃娃脸、过度美颜和彻底像素化。
 - 真实产品、Logo、包装和旅行照在 COMPOSITE 中必须原样保留；未提供或无法确认的内容不得编造。
 

@@ -15,7 +15,7 @@ STYLE: warm wooden study/workspace, retro pixel-game UI, bright cream window lig
 LAYOUT: headline-safe blank title area on the left 55-65%; QIUQIU or clean space on the right 30-40%; real subject/product/route along the bottom.
 TEXT AREA: leave clean title plaques or empty space; do not render Chinese copy in the image.
 CONSTRAINTS: preserve every exact asset as supplied, keep people and products unobstructed, add no unauthorized people/products/logos, keep the image bright and warm, keep 2.35:1.
-NEGATIVE: no invented logos/products, no cartoon or doll-like face, no full pixel person, no dark cyber-tech mood, no unrelated decorations, no aspect-ratio change.
+NEGATIVE: no invented logos/products, no unrelated laptop/electronics unless the article requires them, no cartoon or doll-like face, no full pixel person, no dark cyber-tech mood, no unrelated decorations, no aspect-ratio change.
 ```
 
 如果图像工具无法可靠留出无字区域，可以先生成背景，再在 COMPOSITE 阶段排版真实素材；不要用“Chinese characters exact”代替后期压字。

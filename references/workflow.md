@@ -1,6 +1,6 @@
 # 工作流与输出协议
 
-这份文档处理输入角色、模式路由和阶段输出。视觉参数请读 [style-guide.md](style-guide.md)，跑图结构请读 [prompt-template.md](prompt-template.md)。
+这份文档处理输入角色、模式路由和阶段输出。视觉参数请读 [style-guide.md](style-guide.md)，文案提炼请读 [copy-guide.md](copy-guide.md)，编辑边界请读 [edit-policy.md](edit-policy.md)，跑图结构请读 [prompt-template.md](prompt-template.md)。
 
 ## Reference manifest
 

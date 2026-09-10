@@ -38,6 +38,8 @@ SKILL.md                         入口规则与硬约束
 agents/openai.yaml              UI 展示和默认调用提示
 references/workflow.md          输入角色、阶段协议、编辑边界
 references/style-guide.md       2.35:1 视觉系统
+references/copy-guide.md       封面文案提炼
+references/edit-policy.md      合成与局部编辑边界
 references/prompt-template.md   可复制的生成提示词结构
 references/prompt-checklist.md  生成前后验收清单
 assets/                         默认真人和风格参考图
