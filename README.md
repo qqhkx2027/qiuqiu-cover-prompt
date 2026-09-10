@@ -29,6 +29,8 @@
     agents/openai.yaml              # 智能体展示信息
     references/style-guide.md       # 公众号 2.35:1 风格指南
     references/prompt-template.md   # 标准跑图 Prompt 模板
+    references/assets/qiuqiu-face-reference.jpg  # 默认图 1：真人身份
+    references/assets/qiuqiu-style-reference.png # 默认图 2：整体风格
     tools/validate_skill.py         # 本地校验
     examples/                       # 封面示例（按需添加）
 
@@ -40,6 +42,8 @@
 https://github.com/qqhkx2027/qiuqiu-cover-prompt
 
 安装后可说：调用 qiuqiu-wechat-cover，为这篇文章生成公众号封面。
+
+项目已内置图 1 和图 2。调用时如果附带新图，新图优先；新增产品、Logo、截图或旅行照从图 3 开始编号。
 
 ## 本地校验
 
