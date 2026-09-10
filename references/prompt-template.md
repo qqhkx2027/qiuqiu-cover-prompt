@@ -1,49 +1,35 @@
 # 秋秋微信公众号封面提示词模板
 
-先选择模式并填好 `reference_manifest`。当存在 `preserve: exact` 素材或用户要求局部修改时，不使用全画面重绘。
-
-## GENERATE / COMPOSITE：画面阶段
+复制后替换方括号内容。生成前先确认文章、文案和每张参考图的角色。
 
 ```text
 Create a 2.35:1 horizontal WeChat Official Account article cover for creator QIUQIU, recommended canvas 1880x800.
 
-MODE: [GENERATE or COMPOSITE]
 ARTICLE: [用一句话说明正文主题和点击理由]
-REFERENCE MANIFEST: [粘贴已确认的 manifest，并说明每个文件用途]
+COPY (Chinese, reproduce character by character, no extra text):
+- Hook: “[小钩子]”
+- Main title: “[主标题]”
+- Optional subtitle: “[补充说明；没有就删除这一行]”
+
+REFERENCE ROLES:
+- Image 1: QIUQIU identity only. Keep realistic black hair, facial proportions, eyes, mask, skin tone and age impression. Do not copy its background, pose or text.
+- Image 2: overall style only. Use its warm wood pixel-game workspace, palette, lighting, title hierarchy and desk relationship. Do not copy its text, person, logo or specific product.
+- Image 3+: real supplied product/logo/screenshot/travel photos. Use each as-is for [用途]; do not redraw, recolor, replace brand or invent objects.
 
 STYLE: warm wooden study/workspace, retro pixel-game UI, bright cream window light, purple/pink/cream-yellow accents, cozy and lively, realistic person and real objects integrated with pixel atmosphere.
-LAYOUT: headline-safe blank title area on the left 55-65%; QIUQIU or clean space on the right 30-40%; real subject/product/route along the bottom.
-TEXT AREA: leave clean title plaques or empty space; do not render Chinese copy in the image.
-CONSTRAINTS: preserve every exact asset as supplied, keep people and products unobstructed, add no unauthorized people/products/logos, keep the image bright and warm, keep 2.35:1.
-NEGATIVE: no invented logos/products, no unrelated laptop/electronics unless the article requires them, no cartoon or doll-like face, no full pixel person, no dark cyber-tech mood, no unrelated decorations, no aspect-ratio change.
+LAYOUT: headline on the left 55-65%; QIUQIU or clean space on the right 30-40%; real subject/product/route along the bottom. Keep headline, key number, person and product unobstructed.
+TYPOGRAPHY: bold square pixel display type, main title largest, clear outline/shadow, Chinese characters exact.
+NEGATIVE: no unauthorized words, no invented logos/products, no cartoon or doll-like face, no full pixel person, no dark cyber-tech mood, no unrelated decorations, no aspect-ratio change.
 ```
 
-如果图像工具无法可靠留出无字区域，可以先生成背景，再在 COMPOSITE 阶段排版真实素材；不要用“Chinese characters exact”代替后期压字。
+## 多产品
 
-## 文字后期阶段
+把真实 Logo 或文字名牌放在标题下方横排；每个产品最多一句短标签。空间不足时先删标签，再删补充说明，不缩小主标题。
 
-用 `scripts/render_cover_text.py` 在确认后的底图上压字：
+## 旅行
 
-```json
-{
-  "hook": "均价10块！",
-  "title": "7款超可爱收纳小包",
-  "subtitle": "日常好用，出门更轻松"
-}
-```
+把真实旅行照作为路线节点或 Polaroid 组图；地点、年份和路线只能使用文章或图片已确认的信息。
 
-脚本会使用本机可用的中文字体、奶油黄/粉紫标题、深紫描边和游戏式投影；字体文件不需要放入 Skill 仓库。输出文件必须放到项目目录之外。
+## 生成后
 
-## LOCAL_EDIT
-
-```text
-MODE: LOCAL_EDIT
-CURRENT COVER: [已有封面路径]
-EDIT ONLY: [用户点名要改的区域]
-PRESERVE: [其余必须保持不变的区域]
-REPAIR: use surrounding original background to fill the edited region; do not redraw the full image.
-```
-
-## 多产品与旅行
-
-多产品把真实 Logo 或文字名牌放在标题下方横排，空间不足时先删标签。旅行照作为路线节点或 Polaroid 组图，地点、年份和路线只能使用文章或图片已确认的信息。
+逐字检查中文。若比例、文字或真实素材不符合要求，保留文案和参考图角色，只针对失败项重跑。

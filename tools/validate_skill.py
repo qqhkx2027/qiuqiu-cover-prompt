@@ -15,26 +15,14 @@ def main() -> int:
         "agents/openai.yaml",
         "references/workflow.md",
         "references/style-guide.md",
-        "references/copy-guide.md",
-        "references/edit-policy.md",
         "references/prompt-template.md",
         "references/prompt-checklist.md",
-        "assets/qiuqiu-face-reference.jpg",
-        "assets/qiuqiu-style-reference.png",
-        "scripts/render_cover_text.py",
+        "references/assets/qiuqiu-face-reference.jpg",
+        "references/assets/qiuqiu-style-reference.png",
     )
     for relative in required_files:
         if not (root / relative).is_file():
             errors.append(f"missing required file: {relative}")
-
-    asset_root = (root / "assets").resolve()
-    for media in root.rglob("*"):
-        if media.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
-            continue
-        try:
-            media.resolve().relative_to(asset_root)
-        except ValueError:
-            errors.append(f"generated media must stay outside the repository: {media.relative_to(root)}")
 
     skill = root / "SKILL.md"
     skill_text = ""
@@ -74,11 +62,6 @@ def main() -> int:
         "2.35:1",
         "references/workflow.md",
         "references/prompt-template.md",
-        "GENERATE",
-        "COMPOSITE",
-        "LOCAL_EDIT",
-        "reference_manifest",
-        "项目目录之外",
         "待确认",
     )
     for phrase in required_phrases:
