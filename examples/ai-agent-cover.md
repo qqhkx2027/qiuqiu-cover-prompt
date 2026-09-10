@@ -25,12 +25,32 @@
 补充：3 个办公 AI 真实测评
 名牌：豆包工作 / 千问办公 / WorkBuddy（真实 Logo 待用户提供）
 
+## 步骤 3.5：模式与角色清单
+
+有真实 Logo 时走 `COMPOSITE`，没有 Logo 时可走 `GENERATE`，但只使用文字名牌。
+
+```yaml
+reference_manifest:
+  identity: [qiuqiu.jpg] # 可选
+  style: [assets/qiuqiu-style-reference.png]
+  exact_assets:
+    - file: doubao-logo.png
+      role: logo
+      preserve: exact
+    - file: qianwen-logo.png
+      role: logo
+      preserve: exact
+    - file: workbuddy-logo.png
+      role: logo
+      preserve: exact
+```
+
 ## 步骤 4：跑图提示词（按模板填充）
 
 2.35:1 横版公众号封面（推荐 1880x800）。
 风格：暖木色复古像素游戏工作台，木质书架、木桌、明亮窗户、紫色台灯、小植物、像素 UI 标签。画面明亮温暖。
 人物：「秋秋真人参考图」作为身份依据，80% 真人 + 20% 像素，整体真实（如未提供则删除人物句，右侧留干净工作台）。
-真实素材（如提供）：三个真实 Logo 原样横排；未提供时用「豆包工作 / 千问办公 / WorkBuddy」文字名牌。
+真实素材（如提供）：三个真实 Logo 在 `COMPOSITE` 模式下原样横排；未提供时用「豆包工作 / 千问办公 / WorkBuddy」文字名牌。
 标题：小钩子「501 篇文章」；主标题「谁赢了？」（大字，左侧）；补充「3 个办公 AI 真实测评」。
 布局：左 60% 标题，右 35% 人物或空间，下部三个名牌。
 
@@ -40,4 +60,4 @@
 - 主标题讲正文主题（对比测评）成立
 - 文字约 22 字，未超限成立
 - 无真实素材时用文字名，不编 Logo 成立
-
+- 中文标题在无字底图上用后期脚本压字

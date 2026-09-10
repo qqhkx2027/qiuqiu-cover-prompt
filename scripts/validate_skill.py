@@ -17,12 +17,22 @@ def main() -> int:
         "references/style-guide.md",
         "references/prompt-template.md",
         "references/prompt-checklist.md",
-        "references/assets/qiuqiu-face-reference.jpg",
-        "references/assets/qiuqiu-style-reference.png",
+        "assets/qiuqiu-face-reference.jpg",
+        "assets/qiuqiu-style-reference.png",
+        "scripts/render_cover_text.py",
     )
     for relative in required_files:
         if not (root / relative).is_file():
             errors.append(f"missing required file: {relative}")
+
+    asset_root = (root / "assets").resolve()
+    for media in root.rglob("*"):
+        if media.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
+            continue
+        try:
+            media.resolve().relative_to(asset_root)
+        except ValueError:
+            errors.append(f"generated media must stay outside the repository: {media.relative_to(root)}")
 
     skill = root / "SKILL.md"
     skill_text = ""
@@ -62,6 +72,10 @@ def main() -> int:
         "2.35:1",
         "references/workflow.md",
         "references/prompt-template.md",
+        "GENERATE",
+        "COMPOSITE",
+        "LOCAL_EDIT",
+        "reference_manifest",
         "待确认",
     )
     for phrase in required_phrases:

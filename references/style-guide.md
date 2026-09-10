@@ -29,16 +29,16 @@
 
 ## 参考图与真实素材
 
-- 图 1 只提供身份：黑发、眼神、面部比例、口罩、发型、肤色和年龄感。不要复制花园背景、遮阳动作或原图文字。
-- 图 2 只提供风格：暖木像素、光线、配色、标题层级和桌面关系。不要复制其文案、人物、Logo、MacBook Neo 或具体产品。
-- 用户提供的产品、包装、Logo 和旅行照优先原样放置；不要改形状、颜色、品牌或凭空增加同类物。
+- 用 `reference_manifest` 声明角色，不根据序号猜测。`identity` 只提供黑发、眼神、面部比例、口罩、发型、肤色和年龄感；不要复制其背景、姿势或原图文字。
+- `style` 只提供暖木像素、光线、配色、标题层级和桌面关系；不要复制其文案、人物、Logo、MacBook Neo 或具体产品。
+- `exact_assets` 中的产品、包装、Logo 和旅行照在 `COMPOSITE` 模式下原样放置；不要改形状、颜色、品牌或凭空增加同类物。
 
 ## 固定提示词段落
 
 ```text
 Create a 2.35:1 WeChat article cover for creator QIUQIU.
 STYLE: warm cozy retro pixel-game workspace, wooden study, bright cream window light, purple/pink accents and pixel UI.
-REFERENCES: image 1 is identity only; image 2 is style only; image 3+ are real supplied subjects and must be used as-is.
+REFERENCES: use the role-based reference_manifest; identity is identity only, style is style only, and exact_assets are real supplied subjects that must be used as-is.
 LAYOUT: left 55-65% headline, right 30-40% person or clean space, real subject along the bottom.
 CONSTRAINTS: keep Chinese text exact, add no unauthorized text, keep the image bright and warm, do not invent products or logos.
 ```
