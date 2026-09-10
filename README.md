@@ -40,8 +40,9 @@ references/prompt-checklist.md  生成前后验收清单
 references/assets/              默认图 1、图 2
 examples/                       已完成的示例
 tools/validate_skill.py         本地和 CI 校验
-outputs/                        已生成的封面样例
 ```
+
+生成的 PNG/JPG/WebP 默认保存到项目目录之外。调用时请提供保存目录；仓库不接收生成图片。
 
 ## 本地校验
 
