@@ -16,6 +16,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parent.parent
+TARGET_SIZE = (1880, 800)
 FONT_CANDIDATES = (
     "/System/Library/Fonts/PingFang.ttc",
     "/System/Library/Fonts/Hiragino Sans GB.ttc",
@@ -67,8 +68,20 @@ def main() -> int:
     image = Image.open(source).convert("RGBA")
     width, height = image.size
     ratio = width / height
-    if abs(ratio - 2.35) > 0.02:
-        raise SystemExit(f"底图比例为 {ratio:.3f}，需要接近 2.35:1。")
+    if abs(ratio - 2.35) > 0.10:
+        raise SystemExit(f"底图比例为 {ratio:.3f}，无法安全裁切到 2.35:1。")
+    target_ratio = TARGET_SIZE[0] / TARGET_SIZE[1]
+    if abs(ratio - target_ratio) > 0.001 or image.size != TARGET_SIZE:
+        if ratio > target_ratio:
+            crop_width = round(height * target_ratio)
+            left_crop = (width - crop_width) // 2
+            image = image.crop((left_crop, 0, left_crop + crop_width, height))
+        else:
+            crop_height = round(width / target_ratio)
+            top_crop = (height - crop_height) // 2
+            image = image.crop((0, top_crop, width, top_crop + crop_height))
+        image = image.resize(TARGET_SIZE, Image.Resampling.LANCZOS)
+        width, height = image.size
 
     copy = load_copy(args)
     font = font_path(args.font)
